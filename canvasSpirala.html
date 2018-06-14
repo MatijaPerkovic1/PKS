@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="pks.js"></script>
+	<script src="mat2d.js"></script>
+</head>
+<body>
+	<canvas id="myCanvas">
+	</canvas>
+	<div id="pauza">
+	<div id="gumbi">
+		<p>Pauza</p>
+		<button id="start">Ne</button>
+		<button id="stop">Da</button>
+	</div>
+	</div>
+	
+	<script>
+		var a = 800;
+		var b = 800;
+		var x = 10;
+		var y = 10;
+		MAT2D.prototype.rotacijaOkoTocke = function(matr, x1, y1, fi){
+		return this.rotiraj(this.translacija(matr, x1, y1), fi);
+
+		};
+		var continueAnimating = true;
+
+		document.getElementById('stop').addEventListener('click',function(){
+    		continueAnimating=false;
+		});
+		var p = new PKS(a, b, x, y);
+		p.nacrtajSpiralu(0,0,0.001,57);
+	</script>
+</body>
+</html>

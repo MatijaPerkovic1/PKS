@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="mat2d.js"></script>
+	<script src="pks.js"></script>
+</head>
+<body>
+	<canvas id="myCanvas">
+	</canvas>
+	<div id="pauza">
+		Animacija
+		<button id="start">Kreni</button>
+		<button id="stop">Stani</button>
+		<br>
+		Rotacija
+		<button id="startrt">Kreni</button>
+		<button id="stoprt">Stani</button>
+	</div>
+	<script>
+		var a = 800;
+		var b = 800;
+		var x = 10;
+		var y = 10;
+		var gumb = false;
+		var matka = new MAT2D;
+		var continueAnimating = true;
+		document.getElementById('stop').addEventListener('click',function(){
+    		continueAnimating=false;
+		});
+		document.getElementById('startrt').addEventListener('click',function(){
+    		gumb=true;
+		});
+		document.getElementById('stoprt').addEventListener('click',function(){
+    		gumb=false;
+		});
+		var p = new PKS(a, b, x, y);
+		p.nacrtajLeptira(0,0,0,20.5);
+	</script>
+</body>
+</html>

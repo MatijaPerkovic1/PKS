@@ -1,0 +1,48 @@
+body{
+	
+	background-color:#91793b;
+}
+
+canvas{
+
+	background-color:#ead49a;
+	border:10px solid black;
+}
+
+#pauza{
+
+	background-color:#ead49a;
+	border: 2px solid black;
+	float: right;
+	height: 70px;
+	width: 200px;
+	margin-left: 15%;
+	margin-top: 15%;
+}
+#pauza button {
+	display: inline;
+}
+#pauza p {
+	display: inline;
+}
+#gumbi {
+	margin: 25px;
+}
+#linija{
+
+	background-color:#ead49a;
+	border: 2px solid black;
+	float: right;
+	height: 150px;
+	width: 150px;
+	padding: 15px 30px 15px 30px;
+	margin-left: 15%;
+	margin-top: 15%;
+}
+input{
+	display: inline-block;
+	width:40px;
+}
+#nacrtaj {
+	margin-top: 20px;
+}

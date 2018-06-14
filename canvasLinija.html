@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="pks.js"></script>
+	<script src="mat2d.js"></script>
+</head>
+<body>
+	<canvas id="myCanvas">
+	</canvas>
+	<div id="linija">
+		X1<input id="xt1">
+		Y1<input id="yt1">
+		X2<input id="xt2">
+		Y2<input id="yt2">
+		<button id="nacrtaj">Nacrtaj</button>
+	</div>
+	<select id="izbor">
+	  <option value="">Bez transformacije</option>
+	  <option value="translacija">Translacija</option>
+	  <option value="rotacija">Rotacija</option>
+	  <option value="skaliranje">Skaliranje</option>
+	  <option value="rotacijaokotocke">Rotacija oko točke</option>
+	</select>
+		X<input id="xi">
+		Y<input id="yi">
+		FI<input id="fi">
+		<button id="transformiraj">Transformiraj</button>
+	<script>
+		var a = 800;
+		var b = 800;
+		var x = 10;
+		var y = 10;
+		MAT2D.prototype.rotacijaOkoTocke = function(matr, x1, y1, fi){
+		return this.rotiraj(this.translacija(matr, x1, y1), fi);
+
+		};
+		var p = new PKS(a, b, x, y);
+		var novo = new MAT2D;
+
+		var xi = 0;
+		var yi = 0;
+		var fi = 0;
+
+		document.getElementById("transformiraj").addEventListener('click', function(){
+
+			xi = document.getElementById("xi").value;
+			yi = document.getElementById("yi").value;
+			fi = document.getElementById("fi").value;
+		});
+		document.getElementById('nacrtaj').addEventListener('click',function(){
+
+			var izbor = document.getElementById("izbor").value;
+
+			var xt1 = document.getElementById("xt1").value;
+			var yt1 = document.getElementById("yt1").value;
+			var xt2 = document.getElementById("xt2").value;
+			var yt2 = document.getElementById("yt2").value;
+
+			var t1 = novo.napraviMatricuTocke(xt1, yt1);
+			var t2 = novo.napraviMatricuTocke(xt2, yt2);
+
+			switch(izbor){
+				case 'translacija':
+					var x1 = novo.translacija(t1, xi, yi);
+					var x2 = novo.translacija(t2, xi, yi);
+					p.nacrtajLiniju(x1[0], x1[1], x2[0], x2[1]);
+					break;
+				case 'rotacija':
+					var x1 = novo.rotiraj(t1, fi);
+					var x2 = novo.rotiraj(t2, fi);
+					p.nacrtajLiniju(x1[0], x1[1], x2[0], x2[1]);
+					break;
+				case 'skaliranje':
+					var x1 = novo.skaliranje(t1, xi, yi);
+					var x2 = novo.skaliranje(t2, xi, yi);
+					p.nacrtajLiniju(x1[0], x1[1], x2[0], x2[1]);
+					break;
+				case 'rotacijaokotocke':
+					var x1 = novo.rotacijaOkoTocke(t1, xi, yi, fi);
+					var x2 = novo.rotacijaOkoTocke(t2, xi, yi, fi);
+					p.nacrtajLiniju(x1[0], x1[1], x2[0], x2[1]);
+					break;
+				default:
+					p.nacrtajLiniju(xt1, yt1, xt2, yt2);
+			}
+		});
+	</script>
+</body>
+</html>
